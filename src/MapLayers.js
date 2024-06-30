@@ -35,7 +35,7 @@ const MapLayers = () => {
       drawControlRef.current = new L.Control.Draw({
         edit: {
           featureGroup: drawnItems,
-          edit: false, // Disable default editing
+          edit: true, // Disable default editing
           remove: false,
         },
         draw: {
@@ -88,24 +88,24 @@ const MapLayers = () => {
   const handleEditStart = (event) => {
     // Override default behavior to prevent entering edit mode
     const { handler } = event;
-    const layerToEdit = handler._featureGroup._layers[handler._featureGroup._leaflet_id];
+   // const layerToEdit = handler._featureGroup._layers[handler._featureGroup._leaflet_id];
 
     // Disable editing and dragging for all layers
-    Object.values(layerRefs.current).forEach((layer) => {
-      if (layer.editing) {
-        layer.editing.disable();
-      }
-      if (layer.dragging) {
-        layer.dragging.disable();
-      }
-    });
+    // Object.values(layerRefs.current).forEach((layer) => {
+    //   if (layer.editing) {
+    //     layer.editing.disable();
+    //   }
+    //   if (layer.dragging) {
+    //     layer.dragging.disable();
+    //   }
+    // });
 
-    // Enable dragging for the selected layer manually if needed
-    if (layerToEdit.dragging) {
-      layerToEdit.dragging.enable();
-    }
+    // // Enable dragging for the selected layer manually if needed
+    // if (layerToEdit.dragging) {
+    //   layerToEdit.dragging.enable();
+    // }
 
-    setEditedLayer(layerToEdit);
+   // setEditedLayer(layerToEdit);
   };
 
   const handleEditStop = () => {
